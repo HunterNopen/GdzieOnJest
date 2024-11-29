@@ -1,6 +1,13 @@
 # **GdzieOnJest: Real-Time PKS Bus Monitoring Application**
 
+## **Table of Contents**
+1. [Project Overview](#project-overview)
+2. [Key Features](#key-features)
+3. [Technology Stack](#technology-stack)
+4. [Future Enhancements](#future-enhancements)
+
 ## **Project Overview**
+[Back to Top](#table-of-contents)
 
 **GdzieOnJest** is a cutting-edge mobile application designed to revolutionize public transport accessibility and convenience for PKS bus passengers. By leveraging advanced IoT technologies and real-time data processing, our system bridges the gap between passengers and live bus tracking. The app provides accurate, up-to-the-minute information on bus locations, estimated arrival times, and route progress, empowering users to plan their journeys efficiently and reduce idle waiting times at bus stops.
 
@@ -11,6 +18,7 @@ The ecosystem integrates seamlessly with IoT-enabled GPS devices installed in bu
 ---
 
 ## **Key Features**
+[Back to Top](#table-of-contents)
 
 1. **Real-Time Location Tracking**  
    - Precise GPS-based tracking of PKS buses displayed on an interactive map.  
@@ -31,6 +39,7 @@ The ecosystem integrates seamlessly with IoT-enabled GPS devices installed in bu
 ---
 
 ## **Technology Stack**
+[Back to Top](#table-of-contents)
 
 The development of **GdzieOnJest** leverages a robust and scalable architecture powered by state-of-the-art technologies:
 
@@ -59,6 +68,7 @@ The development of **GdzieOnJest** leverages a robust and scalable architecture 
 ---
 
 ## **Future Enhancements**
+[Back to Top](#table-of-contents)
 
 To further improve the application and meet evolving user demands, potential future additions may include:  
 - Predictive analytics for traffic-aware arrival times.  
