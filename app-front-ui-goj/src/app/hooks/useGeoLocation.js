@@ -16,7 +16,7 @@ const useGeoLocation = () => {
     });
   };
 
-  const onError = (error) => {
+  const onCancel = (error) => {
     setLocation({
       loaded: true,
       error: {
@@ -28,13 +28,13 @@ const useGeoLocation = () => {
 
   useEffect(() => {
     if (!("geolocation" in navigator)) {
-      onError({
+      onCancel({
         code: 0,
         message: "Geolocation not supported",
       });
     }
 
-    navigator.geolocation.getCurrentPosition(onSuccess, onError);
+    navigator.geolocation.getCurrentPosition(onSuccess, onCancel);
   }, []);
 
   return location;
