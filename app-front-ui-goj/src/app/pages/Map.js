@@ -34,9 +34,9 @@ function MyLocation({ location }) {
 }
 
 function Map() {
-  const [center, setCenter] = useState({ lat: 54.352, lng: 18.6466 }); // start position of map
+  const [center, setCenter] = useState({ lat: 54.352, lng: 18.6466 });
   const ZOOM_LEVEL = 10;
-  const location = useGeoLocation(); // getting user position
+  const location = useGeoLocation();
 
   return (
     <div className="row">
