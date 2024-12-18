@@ -3,7 +3,7 @@ import Layout from "../../Layout";
 import React from "react";
 import Home from "../pages/HomePage.tsx";
 import NotFoundException from "../exceptions/NotFoundException.tsx";
-import Map from "../pages/Map.js";
+import Map from "../pages/Map.tsx";
 
 export const router = createBrowserRouter([
   {

@@ -1,17 +1,25 @@
 import React, { useState } from "react";
-import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet";
-import { osm } from "../services/helpers/osm-provides.js";
+import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+import { osm } from "../services/helpers/osm-provides";
 import "leaflet/dist/leaflet.css";
 import useGeoLocation from "../hooks/useGeoLocation";
 import { markerIcon, userLocationIcon } from "../../../src/assets/assets.tsx";
 import "../../assets/styles/map.css";
 
-const latitude = 54.352;
-const longitude = 18.6466;
+const latitude: number = 54.352;
+const longitude: number = 18.6466;
 
-function Map() {
-  const [center, setCenter] = useState({ lat: latitude, lng: longitude });
-  const zoom = 10;
+interface MapLatLng {
+  lat: number;
+  lng: number;
+}
+
+const Map: React.FC = () => {
+  const [center, setCenter] = useState<MapLatLng>({
+    lat: latitude,
+    lng: longitude,
+  });
+  const zoom: number = 10;
   const location = useGeoLocation();
 
   return (
@@ -28,7 +36,12 @@ function Map() {
             {location.loaded && !location.error && (
               <Marker
                 icon={userLocationIcon}
-                position={[location.coordinates.lat, location.coordinates.lng]}
+                position={
+                  [location.coordinates.lat, location.coordinates.lng] as [
+                    number,
+                    number
+                  ]
+                }
               />
             )}
             {/* Bus marker */}
@@ -42,6 +55,6 @@ function Map() {
       </div>
     </div>
   );
-}
+};
 
 export default Map;
