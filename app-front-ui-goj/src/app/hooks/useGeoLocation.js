@@ -1,12 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 
 const useGeoLocation = () => {
   const [location, setLocation] = useState({
     loaded: false,
     coordinates: { lat: "", lng: "" },
+    error: null,
   });
 
-  const onSuccess = (location) => {
+  const onSuccess = useCallback((location) => {
     setLocation({
       loaded: true,
       coordinates: {
@@ -14,17 +15,17 @@ const useGeoLocation = () => {
         lng: location.coords.longitude,
       },
     });
-  };
+  }, []);
 
-  const onCancel = (error) => {
+  const onCancel = useCallback((cancel) => {
     setLocation({
       loaded: true,
       error: {
-        code: error.code,
-        message: error.message,
+        code: cancel.code,
+        message: cancel.message,
       },
     });
-  };
+  }, []);
 
   useEffect(() => {
     if (!("geolocation" in navigator)) {

@@ -1,4 +1,4 @@
-export default {
+export const osm = {
   maptiler: {
     url: "https://api.maptiler.com/maps/basic/256/{z}/{x}/{y}.png?key=Xy8PVhUmC8VLDMCy1wj1",
     attribution:
