@@ -34,7 +34,9 @@
     ]
   },
   "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "file-loader": "^6.2.0",
+    "typescript": "^5.7.2",
     "web-vitals": "^4.2.4"
   }
 }
