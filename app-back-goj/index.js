@@ -37,6 +37,10 @@ app.get('/', (req, res) => {
  */
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
+
+/* Middlewares to handle routes */
+app.use('/api/buses', busRoutes);
+
 app.use('/api', require('./controllers/routes/TestRoutes'));
 
 app.listen(PORT, () => {
