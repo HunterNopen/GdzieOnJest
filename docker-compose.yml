@@ -1,9 +1,7 @@
-version: '3.9'
-
 services:
   backend:
     build:
-      context: ./backend
+      context: ./app-back-goj
     ports:
       - "4040:4040"
     environment:
@@ -11,7 +9,7 @@ services:
     depends_on:
       - mongo
     volumes:
-      - ./backend:/usr/src/app
+      - ./app-back-goj:/usr/src/app
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:4040/health"]
       interval: 30s
@@ -20,13 +18,13 @@ services:
 
   frontend:
     build:
-      context: ./frontend
+      context: ./app-front-ui-goj
     ports:
       - "3000:80"
     depends_on:
       - backend
     volumes:
-      - ./frontend:/usr/src/app
+      - ./app-front-ui-goj:/usr/src/app
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:3000"]
       interval: 30s
