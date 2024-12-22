@@ -31,6 +31,14 @@ app.get('/', (req, res) => {
   res.send('GdzieOnJest Welcomes Urbanowicz!');
 });
 
+/**
+ * Middleware to serve API documentation.
+ * @function
+ */
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+
+app.use('/api', require('./controllers/routes/TestRoutes'));
+
 app.listen(PORT, () => {
   console.log(`GdzieOnJest Welcomes Urbanowicz on port ${PORT}`);
   console.log(`SWAGGER at http://localhost:${PORT}/api-docs`);
