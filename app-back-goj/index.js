@@ -6,18 +6,22 @@ const connectDB = require('./configs/db');
 const seedData = require('./services/UpdaterService');
 const swaggerUi = require('swagger-ui-express');
 const swaggerSpec = require('./configs/swagger');
+const UnitOfWork = require('./services/UnitOfWork');
+
+/* models */
+const Bus = require('./models/Bus');
 
 /* routes */
 const busRoutes = require('./controllers/routes/BusRoutes');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+const unitOfWork = new UnitOfWork();
 
 connectDB();
 if (process.env.UPDATE_DB_WITH_TEST_DATA === 'TRUE') seedData();
 
 app.use(express.json());
-
 
 /**
  * Test check of conectivity.

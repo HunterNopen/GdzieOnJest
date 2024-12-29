@@ -1,6 +1,5 @@
 const express = require('express');
 const busController = require('../BusController');
-const { createBusTransaction } = require('../BusController');
 
 const router = express.Router();
 /**
@@ -46,10 +45,10 @@ router.post('/', (req, res) => {
     }
 });
 
-// router.get('/', busController.getAllBuses);
-// router.get('/:id', busController.getBusById);
-// router.put('/:id', busController.updateBus);
-// router.delete('/:id', busController.deleteBus);
+router.get('/', busController.getAllBuses);
+router.get('/:id', busController.getBusById);
+router.put('/:id', busController.updateBus);
+router.delete('/:id', busController.deleteBus);
 
 //router.post('/create-transaction', createBusTransaction);
 

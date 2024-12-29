@@ -1,5 +1,3 @@
-const UnitOfWork = require('../services/UnitOfWork');
-const Bus = require('../models/Bus');
 const busService = require('../services/BusService');
 
 const createBus = async (req, res) => {
@@ -50,24 +48,6 @@ const deleteBus = async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 };
-
-const createBusTransaction = async (req, res) => {
-  const unitOfWork = new UnitOfWork();
-  try {
-    await unitOfWork.start();
-
-    unitOfWork.registerModel('Bus', Bus);
-
-    await unitOfWork.commit();
-    res.status(201).json({ message: 'Buses created successfully.' });
-  } catch (error) {
-    console.error("POST Error 501");
-    await unitOfWork.rollback();
-    res.status(500).json({ error: error.message });
-  }
-};
-
-module.exports = { createBusTransaction };
 
 module.exports = {
   createBus,
