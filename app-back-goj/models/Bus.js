@@ -6,8 +6,7 @@ const busSchema = new mongoose.Schema({
   status: { type: String, maxlength: 128 },
   currentLocation: { type: mongoose.Schema.Types.ObjectId, ref: 'Location' },
   locationId: { type: mongoose.Schema.Types.ObjectId, ref: 'Location' },
-  route: { type: mongoose.Schema.Types.ObjectId, ref: 'Route' },
-  routeId: { type: Number },
+  routeId: { type: mongoose.Schema.Types.ObjectId, ref: 'Route' },
 });
 
-module.exports = mongoose.model(null, busSchema, 'Bus');
+module.exports = mongoose.model("Bus", busSchema, "Bus");
