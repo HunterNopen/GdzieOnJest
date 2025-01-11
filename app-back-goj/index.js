@@ -6,18 +6,26 @@ const connectDB = require('./configs/db');
 const seedData = require('./services/UpdaterService');
 const swaggerUi = require('swagger-ui-express');
 const swaggerSpec = require('./configs/swagger');
+const UnitOfWork = require('./services/UnitOfWork');
+
+/* models */
+const Bus = require('./models/Bus');
 
 /* routes */
 const busRoutes = require('./controllers/routes/BusRoutes');
+const routeRoutes = require('./controllers/routes/RouteRoutes');
+const userRoutes = require('./controllers/routes/UserRoutes');
+const stopRoutes = require('./controllers/routes/StopRoutes');  
+const locationRoutes = require('./controllers/routes/LocationRoutes');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+const unitOfWork = new UnitOfWork();
 
 connectDB();
 if (process.env.UPDATE_DB_WITH_TEST_DATA === 'TRUE') seedData();
 
 app.use(express.json());
-
 
 /**
  * Test check of conectivity.
@@ -40,8 +48,16 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 /* Middlewares to handle routes */
 app.use('/api/buses', busRoutes);
+app.use('/api/routes', routeRoutes);
+app.use('/api/users', userRoutes);
+app.use('/api/stops', stopRoutes);
+app.use('/api/locations', locationRoutes);
 
-app.use('/api', require('./controllers/routes/TestRoutes'));
+/* Middleware to handle errors globally */
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).json({ error: 'Internal Server Error', message: err.message });
+});
 
 app.listen(PORT, () => {
   console.log(`GdzieOnJest Welcomes Urbanowicz on port ${PORT}`);

@@ -1,30 +1,12 @@
 const mongoose = require('mongoose');
 
 const busSchema = new mongoose.Schema({
-  busNumber: {
-    type: String,
-    required: true,
-  },
-  route: {
-    type: String,
-    required: true,
-  },
-  currentLocation: {
-    latitude: {
-      type: Number,
-      required: true,
-    },
-    longitude: {
-      type: Number,
-      required: true,
-    },
-  },
-  createdAt: {
-    type: Date,
-    default: Date.now,
-  },
+  busNumber: { type: String, required: true },
+  lastUpdate: { type: Date, default: Date.now },
+  status: { type: String, maxlength: 128 },
+  currentLocation: { type: mongoose.Schema.Types.ObjectId, ref: 'Location' },
+  locationId: { type: mongoose.Schema.Types.ObjectId, ref: 'Location' },
+  routeId: { type: mongoose.Schema.Types.ObjectId, ref: 'Route' },
 });
 
-const Bus = mongoose.model(null, busSchema, "Bus");
-
-module.exports = Bus;
+module.exports = mongoose.model("Bus", busSchema, "Bus");
