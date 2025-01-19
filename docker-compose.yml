@@ -5,7 +5,9 @@ services:
     ports:
       - "4040:4040"
     environment:
-      - MONGO_URI=mongodb://mongo:27017/mydatabase
+      - MONGO_URI=mongodb://mongo:27017/GOJ_Development
+      - PORT = 4040
+      - UPDATE_DB_WITH_TEST_DATA=TRUE
     depends_on:
       - mongo
     volumes:
@@ -37,6 +39,9 @@ services:
       - "27017:27017"
     volumes:
       - mongo-data:/data/db
+    logging:
+      driver: "none"
+    command: mongod --quiet --logpath /dev/null 
     healthcheck:
       test: ["CMD", "mongo", "--eval", "db.adminCommand('ping')"]
       interval: 30s

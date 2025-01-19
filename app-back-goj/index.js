@@ -6,6 +6,7 @@ const connectDB = require('./configs/db');
 const seedData = require('./services/UpdaterService');
 const swaggerUi = require('swagger-ui-express');
 const swaggerSpec = require('./configs/swagger');
+const UnitOfWork = require('./services/UnitOfWork');
 
 /* models */
 const Bus = require('./models/Bus');
@@ -19,6 +20,7 @@ const locationRoutes = require('./controllers/routes/LocationRoutes');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+const unitOfWork = new UnitOfWork();
 
 connectDB();
 if (process.env.UPDATE_DB_WITH_TEST_DATA === 'TRUE') seedData();
