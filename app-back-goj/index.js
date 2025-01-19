@@ -59,7 +59,11 @@ app.use((err, req, res, next) => {
   res.status(500).json({ error: 'Internal Server Error', message: err.message });
 });
 
-app.listen(PORT, () => {
-  console.log(`GdzieOnJest Welcomes Urbanowicz on port ${PORT}`);
-  console.log(`SWAGGER at http://localhost:${PORT}/api-docs`);
-});
+if (process.env.NODE_ENV !== 'test') {
+  app.listen(PORT, () => {
+    console.log(`GdzieOnJest Welcomes Urbanowicz on port ${PORT}`);
+    console.log(`SWAGGER at http://localhost:${PORT}/api-docs`);
+  });
+}
+
+module.exports = app;
