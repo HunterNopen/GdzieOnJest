@@ -1,0 +1,66 @@
+config:
+  target: "http://localhost:4040"
+  phases:
+    - duration: 60
+      arrivalRate: 10
+  defaults:
+    headers:
+      Content-Type: "application/json"
+
+scenarios:
+  - name: "Buses API Test"
+    flow:
+      - post:
+          url: "/api/buses"
+          json:
+            busNumber: "BUS{{ $randomInt(100, 999) }}"
+      - get:
+          url: "/api/buses"
+      - get:
+          url: "/api/buses/{{ $lastResponseBody._id }}"
+
+  - name: "Routes API Test"
+    flow:
+      - post:
+          url: "/api/routes"
+          json:
+            routeName: "Route{{ $randomInt(100, 999) }}"
+      - get:
+          url: "/api/routes"
+      - get:
+          url: "/api/routes/{{ $lastResponseBody._id }}"
+
+  - name: "Stops API Test"
+    flow:
+      - post:
+          url: "/api/stops"
+          json:
+            stopName: "Stop{{ $randomInt(100, 999) }}"
+      - get:
+          url: "/api/stops"
+      - get:
+          url: "/api/stops/{{ $lastResponseBody._id }}"
+
+  - name: "Users API Test"
+    flow:
+      - post:
+          url: "/api/users"
+          json:
+            userName: "User{{ $randomInt(100, 999) }}"
+            userSurname: "user{{ $randomInt(100,999) }}"
+            password: "Pass{{ $randomInt(1000,9999) }}"
+      - get:
+          url: "/api/users"
+      - get:
+          url: "/api/users/{{ $lastResponseBody._id }}"
+
+  - name: "Locations API Test"
+    flow:
+      - post:
+          url: "/api/locations"
+          json:
+            zone: "Location{{ $randomInt(100, 999) }}"
+      - get:
+          url: "/api/locations"
+      - get:
+          url: "/api/locations/{{ $lastResponseBody._id }}"
