@@ -21,8 +21,8 @@ const seedRoutes = async () => {
 
 const seedStops = async (routes) => {
   return await Stop.insertMany([
-    { locationName: 'Stop 1', busIds: [], routeId: routes[0]._id },
-    { locationName: 'Stop 2', busIds: [], routeId: routes[1]._id },
+    { locationName: 'Stop 1', routeId: routes[0]._id },
+    { locationName: 'Stop 2', routeId: routes[1]._id },
   ]);
 };
 

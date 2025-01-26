@@ -3,6 +3,8 @@ require('dotenv').config();
 /* dependencies */
 const express = require('express');
 const connectDB = require('./configs/db');
+const bodyParser = require("body-parser");
+const path = require("path");
 const seedData = require('./services/UpdaterService');
 const swaggerUi = require('swagger-ui-express');
 const swaggerSpec = require('./configs/swagger');
@@ -17,6 +19,7 @@ const routeRoutes = require('./controllers/routes/RouteRoutes');
 const userRoutes = require('./controllers/routes/UserRoutes');
 const stopRoutes = require('./controllers/routes/StopRoutes');  
 const locationRoutes = require('./controllers/routes/LocationRoutes');
+const arduinoRoutes = require('./controllers/routes/ArduinoConnectionRoutes');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -26,6 +29,8 @@ connectDB();
 if (process.env.UPDATE_DB_WITH_TEST_DATA === 'TRUE') seedData();
 
 app.use(express.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.static(path.join(__dirname, 'public')));
 
 /**
  * Test check of conectivity.
@@ -52,6 +57,7 @@ app.use('/api/routes', routeRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/stops', stopRoutes);
 app.use('/api/locations', locationRoutes);
+app.use('/api/arduino', arduinoRoutes);
 
 /* Middleware to handle errors globally */
 app.use((err, req, res, next) => {
